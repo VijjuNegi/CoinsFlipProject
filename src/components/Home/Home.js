@@ -10,12 +10,39 @@ import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 
 const Home = (props) => {
   const [coins, setCoins] = useState();
+  const [currencies, setCurrencies] = useState(["OS SOL", "0.1 SOL", "25 SOL", "0.5 SOL", "1 SOL", "2 SOL"]);
+  const [activeButton, setActiveButton] = useState(null);
 
   const coinsHandle = (event) => {
     setCoins(() => {
       console.log(event.target.value);
     });
   };
+
+  const buttonHandler = (event) => {
+    
+    setActiveButton(event.target.getAttribute("data-index"))
+    setCoins(event.target.getAttribute("data-coin"))
+  }
+
+  const CurrencyComponent = ({currencies, activeButton}) => {
+    return (
+      <React.Fragment>
+        {
+          currencies.map((currency,index) => {
+          const isActive = index == activeButton;
+          return (
+              <div key={index} className="col-4 mt-2 text-center">
+                <button onClick={buttonHandler} data-index={index} data-coin={currency} className={classes.mainButton} style={{ background: isActive ? "#4f005f" : "#741188" }}>{currency}</button>
+              </div>
+            )
+          })
+        }
+      </React.Fragment>
+    )
+  }
+
+
   return (
     <div>
       <Card className={classes.home}>
@@ -44,26 +71,7 @@ const Home = (props) => {
             </div>
             <div className="row mt-2">
               <h2 className="text-center">FOR</h2>
-              <div className="col text-center">
-                <button className={classes.mainButton}>click</button>
-              </div>
-              <div className="col text-center">
-                <button className={classes.mainButton}>click</button>
-              </div>
-              <div className="col text-center">
-                <button className={classes.mainButton}>click</button>
-              </div>
-            </div>
-            <div className="row mt-2">
-              <div className="col text-center">
-                <button className={classes.mainButton}>click</button>
-              </div>
-              <div className="col text-center">
-                <button className={classes.mainButton}>click</button>
-              </div>
-              <div className="col text-center">
-                <button className={classes.mainButton}>click</button>
-              </div>
+              <CurrencyComponent currencies={currencies} activeButton={activeButton} />
             </div>
             <div className="row mt-4">
               <div className="col text-center">

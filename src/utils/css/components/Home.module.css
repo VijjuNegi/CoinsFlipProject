@@ -41,3 +41,8 @@ button:active:disabled {
   color: #666666;
   cursor: not-allowed;
 }
+
+.active{
+  background: #741188 !important; 
+  border-color: #741188 !important; 
+}
