@@ -9,7 +9,9 @@
 .fontSize {
   font-size: 200px;
 }
-
+.topMargin {
+  margin-top: 200px !important;
+}
 .mainButton {
   font: inherit;
   border: 1px solid #4f005f;
@@ -40,4 +42,9 @@ button:active:disabled {
   border-color: #ccc;
   color: #666666;
   cursor: not-allowed;
+}
+
+.active {
+  background: #741188 !important;
+  border-color: #741188 !important;
 }
